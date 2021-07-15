@@ -11,7 +11,7 @@ import 'package:vacod/utils/style_docoration.dart';
 import 'package:vacod/widgets/default_button.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key key}) : super(key: key);
+  const SignUpPage({Key? key}) : super(key: key);
   static const route = '/signUp';
 
   @override
@@ -59,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
               width: double.infinity,
               widget: Text(
                 'Đăng ký',
-                style: TextStyles.body1.copyWith(color: lightPrimaryColor),
+                style: TextStyles.bodyS16.copyWith(color: lightPrimaryColor),
               ),
               onPressed: () {
                 // if (formKey.currentState.validate()) {
@@ -77,11 +77,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: [
                   TextSpan(
                     text: 'Đã có tài khoản?',
-                    style: TextStyles.body1,
+                    style: TextStyles.bodyS16,
                   ),
                   TextSpan(
                     text: '  Đăng nhập',
-                    style: TextStyles.body1.copyWith(
+                    style: TextStyles.bodyS16.copyWith(
                       color: lightBlueColor,
                     ),
                     recognizer: TapGestureRecognizer()
@@ -110,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration:
                   InputDecorTheme.textFieldStyle(hintTextStr: 'Tài khoản'),
               validator: (value) {
-                if (value.isEmpty) return 'Tài khoản không được để trống';
+                if (value!.isEmpty) return 'Tài khoản không được để trống';
                 if (value.length < 8) return 'Tài khoản phải >= 8 ký tự';
                 return null;
               },
@@ -125,7 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
               validator: (value) {
                 bool emailValid = RegExp(
                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(value);
+                    .hasMatch(value!);
                 if (value.isEmpty) return 'Email không được để trống';
                 if (!emailValid) return 'Email không hợp lệ';
                 return null;
@@ -141,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
               keyboardType: TextInputType.visiblePassword,
               obscureText: true,
               validator: (value) {
-                if (value.isEmpty) return 'Mật khẩu không được để trống';
+                if (value!.isEmpty) return 'Mật khẩu không được để trống';
                 if (value.length < 8) return 'Mật khẩu phải >= 8 ký tự';
                 return null;
               },

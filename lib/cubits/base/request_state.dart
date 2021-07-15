@@ -13,14 +13,14 @@ enum RequestStatus { init, loading, loaded, error }
 /// - T: model which represents the type of the state.
 class RequestState<T> extends Equatable {
   /// Variable that represents the current state of the response operation
-  final RequestStatus status;
+  final RequestStatus? status;
 
   /// Storages the current value of the operation. Its type is defined by
   /// the class itself.
-  final T value;
+  final T? value;
 
   /// Variable which stores possible error messages during network operations
-  final String errorMessage;
+  final String? errorMessage;
 
   const RequestState._({
     this.status,
@@ -33,14 +33,14 @@ class RequestState<T> extends Equatable {
     return RequestState._(
       status: RequestStatus.values[json['status']],
       value: json['value'],
-      errorMessage: json['errorMessage'],
+      errorMessage: json['errorMessage'] ?? '',
     );
   }
 
   /// Handles creation of JSON ([Map]) objects from a network request state
   Map<String, dynamic> toJson() {
     return {
-      'status': status.index,
+      'status': status!.index,
       'value': value,
       'errorMessage': errorMessage,
     };
@@ -54,7 +54,7 @@ class RequestState<T> extends Equatable {
 
   /// Loading state, between initialization & data.
   /// It also receives the previous value if available.
-  const RequestState.loading([T previousValue])
+  const RequestState.loading([T? previousValue])
       : this._(
           value: previousValue,
           status: RequestStatus.loading,
@@ -77,8 +77,8 @@ class RequestState<T> extends Equatable {
         );
 
   @override
-  List<Object> get props => [
-        status.index,
+  List<Object?> get props => [
+        status!.index,
         value.toString(),
         errorMessage,
       ];

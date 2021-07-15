@@ -14,6 +14,9 @@ class AppTheme {
   static final ThemeData light = ThemeData.light().copyWith(
     brightness: Brightness.light,
     primaryColor: lightPrimaryColor,
+    primaryTextTheme: TextTheme(
+      headline6: TextStyle(color: lightTextColor),
+    ),
     accentColor: lightAccentColor,
     backgroundColor: lightBackgroundColor,
     pageTransitionsTheme: _pageTransitionsTheme,
@@ -22,28 +25,35 @@ class AppTheme {
         borderRadius: BorderRadius.circular(6),
       ),
     ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: lightPrimaryColor,
+      centerTitle: true,
+      iconTheme: IconThemeData(color: lightTextColor),
+      titleTextStyle: TextStyles.bodyS16B.copyWith(color: lightTextColor),
+    ),
     inputDecorationTheme: InputDecorationTheme(
-      hintStyle: TextStyles.body1,
+      hintStyle: TextStyles.bodyS14,
+      contentPadding: EdgeInsets.only(left: 20, top: 13, bottom: 16),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(30.0),
         borderSide: BorderSide(
           color: lightSplashColor,
         ),
       ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(30.0),
         borderSide: BorderSide(
           color: lightSplashColor,
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(30.0),
         borderSide: BorderSide(
           color: lightSplashColor,
         ),
       ),
       filled: true,
-      fillColor: lightSplashColor,
+      fillColor: lightPrimaryColor,
     ),
   );
 

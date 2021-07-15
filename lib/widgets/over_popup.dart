@@ -6,9 +6,9 @@ class OverPopupPage extends StatefulWidget {
   final Function didChooseItem;
 
   OverPopupPage(
-      {@required this.showOffset,
-      @required this.buttonSize,
-      @required this.didChooseItem});
+      {required this.showOffset,
+      required this.buttonSize,
+      required this.didChooseItem});
 
   @override
   _OverPopupPageState createState() => _OverPopupPageState();

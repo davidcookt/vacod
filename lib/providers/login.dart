@@ -5,7 +5,7 @@ enum AppState { initial, authenticated, unauthenticated, authenticating }
 
 class LoginProvider extends ChangeNotifier {
   FirebaseAuth _auth;
-  User _user;
+  late User _user;
   AppState _appState = AppState.initial;
 
   AppState get appState => _appState;

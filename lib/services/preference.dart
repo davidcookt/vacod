@@ -12,7 +12,7 @@ class PreferenceService {
   Future<Brightness> getThemeMode() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int index = prefs.getInt("brightness") ??
-        SchedulerBinding.instance.window.platformBrightness.index;
+        SchedulerBinding.instance!.window.platformBrightness.index;
 
     return Brightness.values[index];
   }

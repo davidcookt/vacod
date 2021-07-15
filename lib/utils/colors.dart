@@ -9,6 +9,14 @@ const lightTextColor = Color(0xFF001829);
 const lightBlueColor = Color(0xFF1877F2);
 const lightRedColor = Color(0xFFEA4335);
 
+///Color(0xFFFD8181)
+const lightRose = Color(0xFFFD8181);
+const lightPurple = Color(0xFF8f98ff);
+const lightGreen = Color(0xFF4dc591);
+const lightBlueLight = Color(0xFF65a4da);
+const lightOrange = Color(0xFFff7648);
+const lightGrey = Color(0xFFdbdbdb);
+const lightRed = Color(0xFFeb5d76);
 // Dark theme
 const darkPrimaryColor = Color(0xFF121212);
 const darkAccentColor = Color(0xFFDFAB00);

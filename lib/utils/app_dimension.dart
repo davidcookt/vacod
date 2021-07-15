@@ -14,6 +14,7 @@ class AppDimension {
   static const double sizePadding16 = 16;
   static const double sizePadding18 = 18;
   static const double sizePadding20 = 20;
+  static const double sizePadding25 = 25;
   static const double sizePadding30 = 30;
 
   static const double sizeMargin10 = 10;

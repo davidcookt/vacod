@@ -60,6 +60,10 @@ class Corners {
   static const double lg = 8;
   static const BorderRadius lgBorder = const BorderRadius.all(lgRadius);
   static const Radius lgRadius = const Radius.circular(lg);
+
+  static const double verylg = 25;
+  static const BorderRadius verylgBorder = const BorderRadius.all(verylgRadius);
+  static const Radius verylgRadius = const Radius.circular(verylg);
 }
 
 class Strokes {
@@ -89,11 +93,14 @@ class Shadows {
 class FontSizes {
   /// Provides the ability to nudge the app-wide font scale in either direction
   static double get scale => 1;
+  static double get s8 => 8 * scale;
   static double get s10 => 10 * scale;
   static double get s11 => 11 * scale;
   static double get s12 => 12 * scale;
   static double get s14 => 14 * scale;
   static double get s16 => 16 * scale;
+  static double get s18 => 18 * scale;
+  static double get s20 => 20 * scale;
   static double get s22 => 22 * scale;
   static double get s24 => 24 * scale;
   static double get s48 => 48 * scale;
@@ -142,14 +149,28 @@ class TextStyles {
       h1.copyWith(fontSize: FontSizes.s14, letterSpacing: -.05, height: 1.29);
   static TextStyle get title1 => poppins.copyWith(
       fontWeight: FontWeight.bold, fontSize: FontSizes.s16, height: 1.31);
-  static TextStyle get title2 => title1.copyWith(
+  static TextStyle get subTitle => title1.copyWith(
       fontWeight: FontWeight.w500, fontSize: FontSizes.s14, height: 1.36);
-  static TextStyle get body1 => poppins.copyWith(
-      fontWeight: FontWeight.normal, fontSize: FontSizes.s14, height: 1.71);
-  static TextStyle get body2 =>
-      body1.copyWith(fontSize: FontSizes.s12, height: 1.5, letterSpacing: .2);
-  static TextStyle get body3 => body1.copyWith(
-      fontSize: FontSizes.s12, height: 1.5, fontWeight: FontWeight.bold);
+  static TextStyle get bodyS18B =>
+      inter.copyWith(fontWeight: FontWeight.bold, fontSize: FontSizes.s18);
+  static TextStyle get bodyS18 => inter.copyWith(fontSize: FontSizes.s16);
+  static TextStyle get bodyS16B =>
+      inter.copyWith(fontWeight: FontWeight.bold, fontSize: FontSizes.s18);
+  static TextStyle get bodyS16 => inter.copyWith(fontSize: FontSizes.s16);
+  static TextStyle get bodyS14B =>
+      inter.copyWith(fontSize: FontSizes.s14, fontWeight: FontWeight.bold);
+  static TextStyle get bodyS14 => inter.copyWith(fontSize: FontSizes.s14);
+  static TextStyle get bodyS12B =>
+      inter.copyWith(fontSize: FontSizes.s12, fontWeight: FontWeight.bold);
+  static TextStyle get bodyS12 => inter.copyWith(fontSize: FontSizes.s10);
+  static TextStyle get bodyS10B =>
+      inter.copyWith(fontSize: FontSizes.s12, fontWeight: FontWeight.bold);
+  static TextStyle get bodyS10 => inter.copyWith(fontSize: FontSizes.s10);
+  static TextStyle get bodyS8B =>
+      inter.copyWith(fontSize: FontSizes.s8, fontWeight: FontWeight.bold);
+  static TextStyle get bodyS8 => inter.copyWith(
+        fontSize: FontSizes.s8,
+      );
   static TextStyle get callout1 => raleway.copyWith(
       fontWeight: FontWeight.w800,
       fontSize: FontSizes.s12,
@@ -167,7 +188,7 @@ class InputDecorTheme {
     return InputDecoration(
       contentPadding: EdgeInsets.all(14),
       hintText: hintTextStr,
-      hintStyle: TextStyles.body1,
+      hintStyle: TextStyles.bodyS16B,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
         borderSide: BorderSide(

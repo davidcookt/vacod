@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FadeRoute<T> extends MaterialPageRoute<T> {
-  FadeRoute({WidgetBuilder builder, RouteSettings settings})
-      : super(builder: builder, settings: settings);
+  FadeRoute({WidgetBuilder? builder, RouteSettings? settings})
+      : super(builder: builder!, settings: settings);
 
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
@@ -12,8 +12,8 @@ class FadeRoute<T> extends MaterialPageRoute<T> {
 }
 
 class ZoomRoute<T> extends MaterialPageRoute<T> {
-  ZoomRoute({WidgetBuilder builder, RouteSettings settings})
-      : super(builder: builder, settings: settings);
+  ZoomRoute({WidgetBuilder? builder, RouteSettings? settings})
+      : super(builder: builder!, settings: settings);
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
@@ -23,8 +23,8 @@ class ZoomRoute<T> extends MaterialPageRoute<T> {
 }
 
 class SlideRoute<T> extends MaterialPageRoute<T> {
-  SlideRoute({WidgetBuilder builder, RouteSettings settings})
-      : super(builder: builder, settings: settings);
+  SlideRoute({WidgetBuilder? builder, RouteSettings? settings})
+      : super(builder: builder!, settings: settings);
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {

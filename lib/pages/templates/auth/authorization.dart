@@ -3,8 +3,8 @@ import 'package:vacod/utils/index.dart';
 import 'dart:math' as math;
 
 class AuthorizationTemplate extends StatelessWidget {
-  final Widget widget;
-  const AuthorizationTemplate({Key key, @required this.widget})
+  final Widget? widget;
+  const AuthorizationTemplate({Key? key, @required this.widget})
       : super(key: key);
 
   @override
@@ -53,7 +53,7 @@ class AuthorizationTemplate extends StatelessWidget {
             ),
             SliverList(
               delegate: SliverChildListDelegate(
-                [widget],
+                [widget!],
               ),
             ),
           ],

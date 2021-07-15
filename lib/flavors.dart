@@ -5,19 +5,20 @@ enum Flavor {
 }
 
 class F {
-  static Flavor flavor;
+  static Flavor? flavor;
   static String get title {
     switch (flavor) {
       case Flavor.dev:
         return "Dev";
-        break;
+
       case Flavor.staging:
         return "Staging";
-        break;
+
       case Flavor.production:
         return "Production";
-        break;
+
+      default:
+        return "Dev";
     }
-    return "";
   }
 }

@@ -11,7 +11,7 @@ import 'package:vacod/utils/style_docoration.dart';
 import 'package:vacod/widgets/default_button.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
   static const route = '/login';
 
   @override
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecorTheme.textFieldStyle(
                         hintTextStr: 'Tài khoản'),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return 'Tài khoản không được để trống';
                       }
                       return null;
@@ -86,10 +86,10 @@ class _LoginPageState extends State<LoginPage> {
               width: double.infinity,
               widget: Text(
                 'Đăng nhập',
-                style: TextStyles.body1.copyWith(color: lightPrimaryColor),
+                style: TextStyles.bodyS16.copyWith(color: lightPrimaryColor),
               ),
               onPressed: () {
-                if (formKey.currentState.validate()) {
+                if (formKey.currentState!.validate()) {
                   print(_email.text);
                   Provider.of<LoginProvider>(context, listen: false)
                       .login(_email.text, _password.text);
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: Text(
                 'Quên mật khẩu?',
-                style: TextStyles.body1.copyWith(
+                style: TextStyles.bodyS16.copyWith(
                   color: lightBlueColor,
                 ),
               ),
@@ -119,11 +119,11 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextSpan(
                     text: 'Không có tài khoản?',
-                    style: TextStyles.body1,
+                    style: TextStyles.bodyS16,
                   ),
                   TextSpan(
                     text: '  Đăng ký',
-                    style: TextStyles.body1.copyWith(
+                    style: TextStyles.bodyS16.copyWith(
                       color: lightBlueColor,
                     ),
                     recognizer: TapGestureRecognizer()

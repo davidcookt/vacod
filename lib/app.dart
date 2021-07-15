@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:vacod/pages/home/home.dart';
 import 'package:vacod/pages/authorization/login/login.dart';
 import 'package:vacod/pages/authorization/sign_up/sign_up.dart';
+import 'package:vacod/pages/root_page/root_page.dart';
+import 'package:vacod/providers/house.dart';
 import 'package:vacod/providers/login.dart';
 import 'package:vacod/providers/sign_up.dart';
 import 'package:vacod/providers/theme.dart';
@@ -12,10 +15,11 @@ import 'package:vacod/routes/routes.dart';
 import 'package:vacod/theme/theme.dart';
 
 import 'providers/app_language.dart';
+import 'providers/service.dart';
 import 'utils/app_localizations.dart';
 
 class MyApp extends StatelessWidget {
-  MyApp({Key key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +30,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<LoginProvider>(
             create: (_) => LoginProvider.instance()),
         ChangeNotifierProvider<SignUpProvider>(create: (_) => SignUpProvider()),
+        ChangeNotifierProvider<HouseProvider>(create: (_) => HouseProvider()),
+        ChangeNotifierProvider<ServiceProvider>(
+            create: (_) => ServiceProvider()),
       ],
       builder: (context, child) => MaterialApp(
         home: showScreen(context),
@@ -44,6 +51,7 @@ class MyApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
+        builder: EasyLoading.init(),
         // builder: (context, widget) => ResponsiveWrapper.builder(
         //   BouncingScrollWrapper.builder(context, widget),
         //   maxWidth: 1200,
@@ -70,7 +78,7 @@ class MyApp extends StatelessWidget {
       case AppState.initial:
         return Container();
       case AppState.authenticated:
-        return HomePage();
+        return RootPage();
     }
     return Container();
   }

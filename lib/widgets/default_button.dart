@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:vacod/utils/index.dart';
+import '../utils/index.dart';
 
 class DefaultButton extends StatelessWidget {
   final double height, width;
   final Function onPressed;
   final Widget widget;
-  final ButtonStyle buttonStyle;
+  final ButtonStyle? buttonStyle;
   final Color buttonColor;
+  final BorderRadius borderRadius;
   const DefaultButton({
-    Key key,
+    Key? key,
     this.height = 50,
     this.width = 315,
-    @required this.widget,
-    @required this.onPressed,
-    this.buttonColor = lightAccentColor,
+    required this.widget,
+    required this.onPressed,
+    this.buttonColor = lightPrimaryColor,
     this.buttonStyle,
+    this.borderRadius = Corners.verylgBorder,
   }) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class DefaultButton extends StatelessWidget {
       height: height,
       width: width,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: onPressed as void Function()?,
         child: widget,
         style: buttonStyle ??
             ButtonStyle(
@@ -31,10 +33,14 @@ class DefaultButton extends StatelessWidget {
                   MaterialStateProperty.resolveWith((states) => buttonColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: buttonColor),
+                  borderRadius: borderRadius,
+                  side: BorderSide(color: Colors.transparent),
                 ),
               ),
+              shadowColor: MaterialStateProperty.resolveWith(
+                  (states) => Colors.transparent),
+              overlayColor: MaterialStateProperty.resolveWith(
+                  (states) => lightPrimaryColor.withOpacity(0.5)),
             ),
       ),
     );

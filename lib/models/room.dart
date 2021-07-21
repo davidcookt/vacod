@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
-// part 'room.g.dart';
+part 'room.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 2)
 class Room extends HiveObject {
   @HiveField(0)
   late String name;

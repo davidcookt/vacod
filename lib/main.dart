@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:vacod/app.dart';
 import 'package:vacod/init/firebase.dart';
 import 'package:vacod/models/house.dart';
+import 'package:vacod/models/room.dart';
 import 'package:vacod/models/service.dart';
 import 'package:vacod/providers/app_language.dart';
 import 'package:vacod/providers/theme.dart';
@@ -24,6 +25,7 @@ Future init() async {
   await Hive.initFlutter();
   Hive.registerAdapter(HouseAdapter());
   Hive.registerAdapter(ServiceAdapter());
+  Hive.registerAdapter(RoomAdapter());
   AppLanguage appLanguage = AppLanguage();
   await appLanguage.fetchLocale();
   Provider.debugCheckInvalidValueType = null;

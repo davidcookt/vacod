@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vacod/pages/service/widgets/house_form_field.dart';
+import 'package:vacod/providers/index.dart';
 import 'package:vacod/utils/index.dart';
 import 'package:vacod/widgets/default_button.dart';
+import 'package:vacod/widgets/form_header.dart';
+import 'package:vacod/widgets/price_form_field.dart';
 
-class CreateRoomPage extends StatelessWidget {
+class CreateRoomPage extends StatefulWidget {
   const CreateRoomPage({Key? key}) : super(key: key);
   static const String route = '/create-room';
+
+  @override
+  _CreateRoomPageState createState() => _CreateRoomPageState();
+}
+
+class _CreateRoomPageState extends State<CreateRoomPage> {
+  TextEditingController _houseController = TextEditingController();
+  TextEditingController _roomNameController = TextEditingController();
+  int? _rent, _deposit;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,49 +35,85 @@ class CreateRoomPage extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Form(
+            key: _formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Chọn nhà',
-                  ),
+                const FormHeader(
+                  title: 'Nhà áp dụng',
+                  isRequired: true,
+                ),
+                SizedBox(height: 10),
+                HouseFormField(
+                  houseController: _houseController,
+                ),
+                SizedBox(height: 10),
+                const FormHeader(
+                  title: 'Tên phòng',
+                  isRequired: true,
                 ),
                 SizedBox(height: 10),
                 TextFormField(
+                  controller: _roomNameController,
                   decoration: InputDecoration(
-                    hintText: 'Tên phòng',
+                    hintText: 'P.101',
                   ),
+                  validator: (val) {
+                    if (val!.isEmpty) return 'Tên phòng không được để trống';
+                    return null;
+                  },
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Tiền phòng',
-                  ),
+                const FormHeader(
+                  title: 'Tiền phòng',
+                  isRequired: true,
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Tiền cọc',
-                  ),
+                PriceFormField(
+                  isBilling: false,
+                  validator: (val) {
+                    if (val!.isEmpty) return 'Tiền cọc không được để trống';
+                    return null;
+                  },
+                  valueChanged: (value) {
+                    print(value);
+                    _rent = value;
+                  },
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Khách trọ',
-                  ),
+                const FormHeader(
+                  title: 'Tiền cọc',
+                  isRequired: true,
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Số người trọ',
-                  ),
+                PriceFormField(
+                  isBilling: false,
+                  validator: (val) {
+                    if (val!.isEmpty) return 'Tiền cọc không được để trống';
+                    return null;
+                  },
+                  valueChanged: (value) {
+                    print(value);
+                    _deposit = value;
+                  },
                 ),
                 SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   child: DefaultButton(
                     widget: Text('Xác nhận'),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<RoomProvider>().addRoom(
+                              _roomNameController.text,
+                              _houseController.text,
+                              _rent!,
+                              _deposit!,
+                            );
+                        Navigator.of(context).pop();
+                      }
+                    },
                     buttonColor: lightAccentColor,
                   ),
                 )

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 3)
 class Renter extends HiveObject {
   @HiveField(0)
   late String renterID;

@@ -127,7 +127,7 @@ class RoomProvider extends ChangeNotifier {
     final Map<dynamic, Room> deliveriesMap = box.toMap();
     dynamic desiredKey;
     deliveriesMap.forEach((key, value) {
-      if (value.houseID == roomID) desiredKey = key;
+      if (value.roomID == roomID) desiredKey = key;
     });
     print(desiredKey);
     await box.delete(desiredKey);

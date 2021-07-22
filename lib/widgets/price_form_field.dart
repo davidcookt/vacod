@@ -10,34 +10,36 @@ class PriceFormField extends StatefulWidget {
     this.valueChanged,
     this.isBilling = false,
     this.validator,
+    this.controller,
   }) : super(key: key);
   final int? price;
   final ValueChanged<int>? valueChanged;
   final bool? isBilling;
   final FormFieldValidator<String>? validator;
+  final TextEditingController? controller;
   @override
   _PriceFormFieldState createState() => _PriceFormFieldState();
 }
 
 class _PriceFormFieldState extends State<PriceFormField> {
-  TextEditingController _controller = TextEditingController();
+  // TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    if (widget.price != null) {
-      _controller.text =
-          NumberFormat.currency(locale: 'vi', decimalDigits: 0, symbol: '')
-                  .format(widget.price)
-                  .trim() +
-              'đ';
-    }
+    // if (widget.price != null) {
+    //   _controller.text =
+    //       NumberFormat.currency(locale: 'vi', decimalDigits: 0, symbol: '')
+    //               .format(widget.price)
+    //               .trim() +
+    //           'đ';
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: _controller,
+      controller: widget.controller,
       inputFormatters: [CurrencyInputFormatter()],
       onChanged: (value) {
         widget.valueChanged!(int.parse(value.replaceAll(RegExp('[^0-9]'), '')));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vacod/pages/room/create/create_room.dart';
+import 'package:vacod/pages/room/edit/edit_room.dart';
 import 'package:vacod/providers/index.dart';
 import 'package:vacod/utils/debouncer.dart';
 import 'package:vacod/utils/index.dart';
@@ -117,7 +118,14 @@ class _RoomPageState extends State<RoomPage> {
           color: lightAccentColor,
           borderRadius: BorderRadius.circular(30),
           child: InkWell(
-            onTap: () {},
+            onTap: () async {
+              await context
+                  .read<RoomProvider>()
+                  .getDetailRoom(data.getRoom(i).roomID);
+              Navigator.of(context).pushNamed(EditRoomPage.route, arguments: {
+                'roomID': data.getRoom(i).roomID,
+              });
+            },
             borderRadius: BorderRadius.circular(30),
             child: Container(
               height: 44,

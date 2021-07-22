@@ -7,6 +7,7 @@ import 'package:vacod/pages/house/create/create_house.dart';
 import 'package:vacod/pages/house/edit/edit_house.dart';
 import 'package:vacod/pages/house/house.dart';
 import 'package:vacod/pages/room/create/create_room.dart';
+import 'package:vacod/pages/room/edit/edit_room.dart';
 import 'package:vacod/pages/room/room.dart';
 import 'package:vacod/pages/service/create/create_service.dart';
 import 'package:vacod/pages/service/edit/edit_service.dart';
@@ -48,6 +49,11 @@ class RouteGenerator {
         final serviceID = args['serviceID'] as String;
         return route.fade(EditServicePage(
           serviceID: serviceID,
+        ));
+      case EditRoomPage.route:
+        final roomID = args['roomID'] as String;
+        return route.fade(EditRoomPage(
+          roomID: roomID,
         ));
       default:
         return route.normal(HomePage());

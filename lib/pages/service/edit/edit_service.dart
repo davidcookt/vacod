@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vacod/pages/service/widgets/house_form_field.dart';
 import 'package:vacod/pages/service/widgets/list_form_service.dart';
@@ -25,12 +26,12 @@ class _EditServicePageState extends State<EditServicePage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _serviceNameController = TextEditingController();
   TextEditingController _houseController = TextEditingController();
+  TextEditingController _priceController = TextEditingController();
   String? _formServiceId, _currentHouseID;
   int? _unitPrice;
   @override
   void initState() {
     super.initState();
-    print('1');
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       // context
       //     .read<ServiceProvider>()
@@ -48,6 +49,11 @@ class _EditServicePageState extends State<EditServicePage> {
           context.read<ServiceProvider>().getActiveService.houseID;
       print('3 $_currentHouseID');
       _unitPrice = context.read<ServiceProvider>().getActiveService.unitPrice;
+      _priceController.text =
+          NumberFormat.currency(locale: 'vi', decimalDigits: 0, symbol: '')
+                  .format(_unitPrice)
+                  .trim() +
+              'đ';
       setState(() {});
     });
   }
@@ -115,11 +121,12 @@ class _EditServicePageState extends State<EditServicePage> {
                   SizedBox(height: 10),
                   PriceFormField(
                     isBilling: false,
+                    controller: _priceController,
                     validator: (val) {
                       if (val!.isEmpty) return 'Đơn giá không được để trống';
                       return null;
                     },
-                    key: ValueKey(_unitPrice),
+                    // key: ValueKey(_unitPrice),
                     price: _unitPrice,
                     valueChanged: (value) {
                       print(value);

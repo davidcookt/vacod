@@ -17,4 +17,11 @@ class AppConstant {
   static String formatMoney(int money) {
     return NumberFormat.simpleCurrency(locale: 'vi').format(money);
   }
+
+  static String formatMoneyVND(int money) {
+    return NumberFormat.currency(locale: 'vi', decimalDigits: 0, symbol: '')
+            .format(money)
+            .trim() +
+        'đ';
+  }
 }

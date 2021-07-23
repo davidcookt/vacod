@@ -1,21 +1,22 @@
 import 'package:hive/hive.dart';
+part 'renter.g.dart';
 
 @HiveType(typeId: 3)
 class Renter extends HiveObject {
   @HiveField(0)
   late String renterID;
   @HiveField(1)
-  late String renterName;
+  String? renterName;
   @HiveField(2)
-  late String identityNo;
+  String? identityNo;
   @HiveField(3)
-  late String phoneNo;
+  String? phoneNo;
   @HiveField(4)
-  late String address;
+  String? address;
   @HiveField(5)
-  late String avatarPath;
+  String? avatarPath;
   @HiveField(6)
-  late List<String> listImagePaths;
+  List<String>? listImagePaths;
   @HiveField(7)
   late String createdBy;
   @HiveField(8)
@@ -25,9 +26,21 @@ class Renter extends HiveObject {
   @HiveField(10)
   late DateTime lastModified;
   @HiveField(11)
-  late String houseID;
+  String? houseID;
   @HiveField(12)
-  late String roomID;
+  String? roomID;
   @HiveField(13)
-  late DateTime dob;
+  DateTime? dob;
+
+  Renter({
+    this.renterName,
+    this.identityNo,
+    this.phoneNo,
+    this.address,
+    this.dob,
+    this.houseID,
+    this.roomID,
+    this.avatarPath,
+    this.listImagePaths,
+  });
 }

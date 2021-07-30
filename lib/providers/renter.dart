@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 import 'package:vacod/models/renter.dart';
 
 class RenterProvider extends ChangeNotifier {
-  static const String _boxName = 'room';
+  static const String _boxName = 'renter';
 
   List<Renter> _renters = [];
   Renter? _activeRenter;
@@ -130,4 +130,8 @@ class RenterProvider extends ChangeNotifier {
     print('Edited ${newRenter.renterID}' + desiredKey.toString());
     notifyListeners();
   }
+
+  Renter get getActiveRenter => _activeRenter!;
+
+  int get renterCount => _renters.length;
 }

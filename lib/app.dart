@@ -8,6 +8,7 @@ import 'package:vacod/pages/authorization/login/login.dart';
 import 'package:vacod/pages/authorization/sign_up/sign_up.dart';
 import 'package:vacod/pages/root_page/root_page.dart';
 import 'package:vacod/providers/index.dart';
+import 'package:vacod/providers/renter.dart';
 import 'package:vacod/routes/routes.dart';
 import 'package:vacod/theme/theme.dart';
 import 'utils/app_localizations.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ServiceProvider>(
             create: (_) => ServiceProvider()),
         ChangeNotifierProvider<RoomProvider>(create: (_) => RoomProvider()),
+        ChangeNotifierProvider<RenterProvider>(create: (_) => RenterProvider()),
       ],
       builder: (context, child) => MaterialApp(
         home: showScreen(context),

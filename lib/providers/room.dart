@@ -12,7 +12,7 @@ class RoomProvider extends ChangeNotifier {
   bool? isLoading = false, isLoaded = false, isFailed = false;
   bool? isNotFound = false;
 
-  void getRooms() async {
+  void getRooms({String? houseID}) async {
     isLoading = true;
 
     // isFailed = false;
@@ -22,7 +22,19 @@ class RoomProvider extends ChangeNotifier {
     // print(isLoaded);
     try {
       var box = await Hive.openBox<Room>(_boxName);
-      _rooms = box.values.toList();
+      if (houseID!.length > 0) {
+        _rooms = box.values
+            .toList()
+            .where((element) => element.houseID == houseID)
+            .toList();
+        if (_rooms.isEmpty) {
+          isNotFound = true;
+        } else {
+          isNotFound = false;
+        }
+      } else {
+        _rooms = box.values.toList();
+      }
     } catch (e) {
       isFailed = true;
       print('get Rooms Failed $e');

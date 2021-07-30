@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vacod/pages/house/house.dart';
+import 'package:vacod/pages/renter/renter.dart';
 import 'package:vacod/pages/room/room.dart';
 import 'package:vacod/pages/service/service.dart';
 import 'package:vacod/providers/app_language.dart';
@@ -132,6 +133,8 @@ class _HomePageState extends State<HomePage> {
         return Navigator.of(context).pushNamed(RoomPage.route);
       case '2':
         return Navigator.of(context).pushNamed(ServicePage.route);
+      case '4':
+        return Navigator.of(context).pushNamed(RenterPage.route);
       default:
         return Navigator.of(context).pushNamed(HousePage.route);
     }

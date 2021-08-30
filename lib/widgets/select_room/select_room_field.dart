@@ -29,10 +29,12 @@ class _SelectRoomFieldState extends State<SelectRoomField> {
     if (widget.isEdit!) {
       if (widget.currentvalue != null) {
         WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-          context.read<RoomProvider>().getRooms();
+          context
+              .read<RoomProvider>()
+              .getRooms(houseID: widget.roomController!.text);
           widget.roomController?.text = widget.currentvalue!;
           _serviceNameController.text =
-              context.read<HouseProvider>().getActiveHouse.name;
+              context.read<RoomProvider>().getActiveRoom.name;
           setState(() {});
         });
       }
@@ -41,7 +43,9 @@ class _SelectRoomFieldState extends State<SelectRoomField> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return TextFormField(
+      readOnly: true,
+      enableInteractiveSelection: true,
       onTap: () {
         if (widget.houseController?.text == null ||
             widget.houseController!.text.length <= 0) {
@@ -66,13 +70,16 @@ class _SelectRoomFieldState extends State<SelectRoomField> {
               });
         }
       },
-      child: TextFormField(
-        enabled: false,
-        controller: _serviceNameController,
-        decoration: InputDecoration(
-          hintText: 'Phòng',
-        ),
+      controller: _serviceNameController,
+      decoration: InputDecoration(
+        hintText: 'Phòng',
       ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Phòng không được để trống';
+        }
+        return null;
+      },
     );
   }
 }

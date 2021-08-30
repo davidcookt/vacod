@@ -131,6 +131,23 @@ class RenterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> getDetailRenter(renterID) async {
+    isLoading = true;
+    notifyListeners();
+    try {
+      var box = await Hive.openBox<Renter>(_boxName);
+      _activeRenter =
+          box.values.where((element) => element.renterID == renterID).first;
+      // print(_activeRenter?.renterName);
+      Future.delayed(Duration(milliseconds: 500)).then((value) {
+        isLoading = false;
+        notifyListeners();
+      });
+    } catch (e) {
+      print('Get Detail Renter Failed $e');
+    }
+  }
+
   Renter get getActiveRenter => _activeRenter!;
 
   int get renterCount => _renters.length;

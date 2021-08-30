@@ -9,14 +9,18 @@ import 'package:vacod/widgets/form_header.dart';
 import 'package:vacod/widgets/index.dart';
 import 'package:vacod/widgets/select_room/select_room_field.dart';
 
-class CreateRenterPage extends StatefulWidget {
-  CreateRenterPage({Key? key}) : super(key: key);
-  static const String route = '/create-renter';
+class EditRenterPage extends StatefulWidget {
+  final String? renterID;
+  EditRenterPage({
+    Key? key,
+    this.renterID,
+  }) : super(key: key);
+  static const String route = '/edit-renter';
   @override
-  _CreateRenterPageState createState() => _CreateRenterPageState();
+  _EditRenterPageState createState() => _EditRenterPageState();
 }
 
-class _CreateRenterPageState extends State<CreateRenterPage> {
+class _EditRenterPageState extends State<EditRenterPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _renterNameController = TextEditingController();
   TextEditingController _phoneNoController = TextEditingController();
@@ -26,7 +30,26 @@ class _CreateRenterPageState extends State<CreateRenterPage> {
   TextEditingController _houseController = TextEditingController();
   TextEditingController _roomController = TextEditingController();
   bool isSelected = false;
-  String? _formHouseID = '';
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      _renterNameController.text =
+          context.read<RenterProvider>().getActiveRenter.renterName ?? '';
+      _houseController.text =
+          context.read<RenterProvider>().getActiveRenter.houseID ?? '';
+      _roomController.text =
+          context.read<RenterProvider>().getActiveRenter.roomID ?? '';
+      _renterAddressController.text =
+          context.read<RenterProvider>().getActiveRenter.address ?? '';
+      _phoneNoController.text =
+          context.read<RenterProvider>().getActiveRenter.phoneNo ?? '';
+      _renterIDController.text =
+          context.read<RenterProvider>().getActiveRenter.identityNo ?? '';
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,7 +58,7 @@ class _CreateRenterPageState extends State<CreateRenterPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Thêm khách thuê'),
+          title: Text('Sửa khách thuê'),
         ),
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -154,7 +177,7 @@ class _CreateRenterPageState extends State<CreateRenterPage> {
                   SizedBox(height: AppDimension.s20),
                   Center(
                     child: DefaultButton(
-                      widget: Text('Tạo'),
+                      widget: Text('Lưu'),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           if (_houseController.text == '') {
@@ -162,19 +185,19 @@ class _CreateRenterPageState extends State<CreateRenterPage> {
                             return;
                           }
 
-                          context.read<RenterProvider>().addRenter(Renter(
-                                renterName: _renterNameController.text,
-                                address: _renterAddressController.text,
-                                dob: null,
-                                phoneNo: _phoneNoController.text,
-                                identityNo: _renterIDController.text,
-                                houseID: _houseController.text,
-                                roomID: _roomController.text,
-                                avatarPath: '',
-                                listImagePaths: [],
-                              ));
+                          // context.read<RenterProvider>().addRenter(Renter(
+                          //       renterName: _renterNameController.text,
+                          //       address: _renterAddressController.text,
+                          //       dob: null,
+                          //       phoneNo: _phoneNoController.text,
+                          //       identityNo: _renterIDController.text,
+                          //       houseID: _houseController.text,
+                          //       roomID: _roomController.text,
+                          //       avatarPath: '',
+                          //       listImagePaths: [],
+                          //     ));
 
-                          Navigator.of(context).pop();
+                          // Navigator.of(context).pop();
                         }
                       },
                       buttonColor: lightAccentColor,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vacod/pages/renter/edit/edit_renter.dart';
 import 'package:vacod/providers/index.dart';
 import 'package:vacod/providers/renter.dart';
 import 'package:vacod/utils/debouncer.dart';
@@ -119,9 +120,12 @@ class _RenterPageState extends State<RenterPage> {
           color: lightAccentColor,
           borderRadius: BorderRadius.circular(30),
           child: InkWell(
-            onTap: () {
-              // Navigator.of(context).pushNamed(EditHousePage.route,
-              //     arguments: {'houseId': data.getHouse(i).houseID});
+            onTap: () async {
+              await context
+                  .read<RenterProvider>()
+                  .getDetailRenter(data.getRenter(i).renterID);
+              Navigator.of(context).pushNamed(EditRenterPage.route,
+                  arguments: {'renterID': data.getRenter(i).renterID});
             },
             borderRadius: BorderRadius.circular(30),
             child: Container(
